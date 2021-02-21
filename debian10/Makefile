@@ -1,21 +1,32 @@
-.PHONY: base quagga frr sdn all pushall
+.PHONY: base sirsbase quagga frr sdn all pushall
 
-all: base quagga frr sdn
+all: base sirsbase quagga frr sdn
 
 pushall:
-	docker push kathara/base:debian10
-	docker push kathara/quagga:debian10
-	docker push kathara/frr:debian10
-	docker push kathara/sdn:debian10
+	docker push xtrm0/sirsbase:debian10
+	docker push xtrm0/quagga:debian10
+	docker push xtrm0/frr:debian10
+	docker push xtrm0/sdn:debian10
+	docker tag xtrm0/sirsbase:debian10 xtrm0/sirsbase:latest
+	docker tag xtrm0/quagga:debian10 xtrm0/quagga:latest
+	docker tag xtrm0/frr:debian10 xtrm0/frr:latest
+	docker tag xtrm0/sdn:debian10 xtrm0/sdn:latest
+	docker push xtrm0/sirsbase:latest
+	docker push xtrm0/quagga:latest
+	docker push xtrm0/frr:latest
+	docker push xtrm0/sdn:latest
 
 base:
-	cd base && docker build -t kathara/base:debian10 .
+	docker pull kathara/base:debian10
 
-quagga: base
-	cd quagga && docker build -t kathara/quagga:debian10 .
+sirsbase: base
+	cd sirsbase && docker build -t xtrm0/sirsbase:debian10 .
 
-frr: base
-	cd frr && docker build -t kathara/frr:debian10 .
+quagga: sirsbase
+	cd quagga && docker build -t xtrm0/quagga:debian10 .
 
-sdn: base
-	cd sdn && docker build -t kathara/sdn:debian10 .
+frr: sirsbase
+	cd frr && docker build -t xtrm0/frr:debian10 .
+
+sdn: sirsbase
+	cd sdn && docker build -t xtrm0/sdn:debian10 .

@@ -1,4 +1,4 @@
-FROM kathara/base:debian10
+FROM xtrm0/sirsbase:debian10
 
 RUN curl -s https://deb.frrouting.org/frr/keys.asc | apt-key add -   
    

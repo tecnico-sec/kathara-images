@@ -1,4 +1,4 @@
-FROM kathara/base:debian10
+FROM xtrm0/sirsbase:debian10
 
 ARG DEBIAN_FRONTEND="noninteractive"
 RUN apt update
