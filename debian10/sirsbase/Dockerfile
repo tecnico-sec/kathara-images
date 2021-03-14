@@ -17,4 +17,7 @@ RUN apt install -y nmap \
                    libpcap-dev \
                    exim4 \
                    openvpn \
-                   man
+                   man \
+                   mariadb-server \
+                   python \
+                   python-mysqldb
